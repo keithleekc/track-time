@@ -34,13 +34,6 @@ function addTime() {
     expectedEndTime.setMinutes(expectedEndTime.getMinutes() + workmins);
     console.log('Expected end time:', expectedEndTime); // Debugging log
 
-// // Get current time
-//     const currentTime = new Date();
-
-// // Add hours and minutes to current time
-//     currentTime.setHours(currentTime.getHours()+workhrs );
-//     currentTime.setMinutes(currentTime.getMinutes()+workmins);
-
 // Display the result
         // Define options for 12-hour format with AM/PM
         const options = {
@@ -68,7 +61,7 @@ function addTime() {
 
      const timerDisplay = document.getElementById('duration');
      if (timerDisplay) {
-        timerDisplay.textContent = timerhours.toString().padStart(2, '0') + 'hrs ' + timerminutes.toString().padStart(2, '0') + 'mins ' + timerseconds.toString().padStart(2, '0') + 's';
+        timerDisplay.textContent = timerhours.toString().padStart(2, '0') + 'hr ' + timerminutes.toString().padStart(2, '0') + 'min ' + timerseconds.toString().padStart(2, '0') + 's';
     } else {
         console.error('Timer display element not found.');
     }
