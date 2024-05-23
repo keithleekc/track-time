@@ -132,9 +132,11 @@ function addTime() {
     function checkTimeUp() {
     const currentTime = new Date();
     if (currentTime > expectedEndTime) {
+        stopTimer();
+        openPopup('popup.html', "Time's Up!", 400, 300);
         alert("Time's up! If you need more time, pls press the start button to track the activity again.");
         endbutton();
-        openPopup('popup.html', "Time's Up!", 400, 300);
+        
     }
     }
       
@@ -154,9 +156,9 @@ function addTime() {
         hour12: true
     };
     const formattedStartTime = startTime.toLocaleTimeString('en-US', startTimeOptions);
-
+    
+    
     alert("\nTime Tracked: " + timerDisplay + "\nStart Time: " + formattedStartTime + "\nEnd Time: " + formattedendtime + "\nOfficer Name: " + username + "\nProject: " + clickedProjectButton + "\nActivity: " + clickedActivityButton);
-
     }
 
 // Function to get user's name
@@ -170,7 +172,7 @@ window.onload = function() {
 function getname() {
     var username = null;
     while (username === null || username.trim() === "") {
-        username = prompt("Please enter your Name:");
+        username = prompt("Good Day! \nMay I have your Name pls?");
         if (username === null) {
             // Handle if user cancels the prompt
             document.getElementById('error').textContent = "Error: No name entered";
