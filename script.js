@@ -132,9 +132,9 @@ function addTime() {
     function checkTimeUp() {
     const currentTime = new Date();
     if (currentTime > expectedEndTime) {
-        //alert("Time's up! If you need more time, pls press the start button to track the activity again.");
-        openPopup('popup.html', 'Time's Up!', 400, 300);
+        alert("Time's up! If you need more time, pls press the start button to track the activity again.");
         endbutton();
+        openPopup('popup.html', "Time's Up!", 400, 300);
     }
     }
       
