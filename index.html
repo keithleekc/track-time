@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Time @ Work</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    
+    <center>
+   
+        <div class="logo">TRACK<br>T  I  M  E</div>
+        <div class="logowork">@ WORK</div>
+        
+        <h2 id="welcomeusername">Welcome</h2>
+        <div id="error"></div>
+        <br>
+
+        <h2 class="page">PROJECT</h2>
+        <div id="Pbutton-container"></div>
+        <br>
+
+        <h2 class="page">ACTIVITY</h2>
+        <div id="button-container"></div>
+        <br>
+
+        <div class="container">
+            <div class="rowbox">Expected Working Time
+            <div id="boxdata">
+                <input type="number" id="inputhrs" placeholder="0" min="0">Hours
+                <input type="number" id="inputmins" placeholder="0" min="0" max="59">Min
+            </div>
+            
+            <div class="rowbox">Current Start Time
+            <div id="currenttime">--:--</div>
+            </div>
+        </div>
+
+        <div class="lowercontainer">
+            <div class="leftbox">Elapsed Duration
+                <div id="duration">--:--</div>
+            </div>
+
+            <div class="rightbox">End Time
+            <div id="endtime">--:--</div>
+            </div>
+            
+            <div><button class="startbutton" onclick="startbutton()">►   Start</button></div>
+            <div><button class="endbutton" onclick="endbutton()">⏹   End Early</button></div>
+        </div>
+
+    
+    </center>
+    
+    <script src="script.js"></script>
+
+</body>
+</html>
