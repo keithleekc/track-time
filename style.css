@@ -48,7 +48,7 @@ input[type="number"],
 .lowercontainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 columns of equal width */
-  grid-template-rows: repeat(1, 1fr);    /* 4 rows of equal height */
+  grid-template-rows: repeat(0, 0fr);    /* 4 rows of equal height */
   gap: 0px;                             /* Optional: spacing between grid items */
   width: 400px;
   margin: 0 auto;                        /* Optional: center the container */
@@ -59,7 +59,7 @@ input[type="number"],
  .rowbox {
     color: grey
     border: 0cap solid #ccc;
-    padding: 30px;
+    padding: 20px;
     font-family: Helvetica neue, sans-serif;
     font-weight: 300;
     font-size: 13px;
@@ -71,7 +71,8 @@ input[type="number"],
 .leftbox {
   color: grey
   border: 0cap solid #ccc;
-  padding: 30px;
+  padding-top: 30px;
+  padding-bottom: 0px;
   font-family: Helvetica neue, sans-serif;
   font-weight: 300;
   font-size: 13px;
@@ -82,7 +83,8 @@ input[type="number"],
 .rightbox {
   color: grey
   border: 0cap solid #ccc;
-  padding: 30px;
+  padding-top: 30px;
+  padding-bottom: 0px;
   font-family: Helvetica neue, sans-serif;
   font-weight: 300;
   font-size: 13px;
@@ -191,7 +193,6 @@ input[type="number"],
   display: inline-block; /* Make the link behave like a button */
   font-family: Helvetica neue, sans-serif;
   font-size: 16px; /* Increase font size */
-  margin: 4px 2px; /* Some margin */
   cursor: pointer; /* Pointer/hand icon on hover */
   border-radius: 12px; /* Rounded corners */
 }
@@ -211,7 +212,6 @@ input[type="number"],
   display: inline-block; /* Make the link behave like a button */
   font-size: 16px; /* Increase font size */
   font-family: Helvetica neue, sans-serif;
-  margin: 4px 2px; /* Some margin */
   cursor: pointer; /* Pointer/hand icon on hover */
   border-radius: 12px; /* Rounded corners */
 }
