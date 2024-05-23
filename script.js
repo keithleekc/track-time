@@ -286,6 +286,10 @@ function openPopup(url, title, width, height) {
     const popupWindow = window.open(url, title, features);
     // Focus on the pop-up window
     popupWindow.focus();
-}
 
+    // Automatically close the popup after 3 seconds
+    setTimeout(() => {
+    popupWindow.close();
+    }, 3000);
+}
 
