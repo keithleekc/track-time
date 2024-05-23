@@ -98,7 +98,7 @@ input[type="number"],
   font-size: 25px;
 }
 
-#currenttime, #endtime, #duration {
+#currenttime, #endtime, #duration, #starttime {
   color: blue;
   font-size: 25px;
   font-family: Helvetica neue, sans-serif;

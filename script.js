@@ -1,3 +1,162 @@
+
+//Global Variables
+    let timerInterval;
+    let timerseconds = 0;
+    let timerminutes = 0;
+    let timerhours=0;
+    let startTime;
+    let expectedEndTime;
+
+// Function to get current time
+function updateTime() {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    const hoursStr = hours.toString().padStart(2);
+    const timeString = `${hoursStr}:${minutes} ${ampm}`;
+    document.getElementById('starttime').textContent = timeString;
+    return timeString;
+}
+
+
+//Update Expected End Time
+function addTime() {
+    const workhrs = parseInt(document.getElementById('inputhrs').value) || 0; // Get hours input value, default to 0 if not provided
+    const workmins = parseInt(document.getElementById('inputmins').value) || 0; // Get hours input value, default to 0 if not provided
+
+    expectedEndTime = new Date(startTime);
+    expectedEndTime.setHours(expectedEndTime.getHours() + workhrs);
+    expectedEndTime.setMinutes(expectedEndTime.getMinutes() + workmins);
+    console.log('Expected end time:', expectedEndTime); // Debugging log
+
+// // Get current time
+//     const currentTime = new Date();
+
+// // Add hours and minutes to current time
+//     currentTime.setHours(currentTime.getHours()+workhrs );
+//     currentTime.setMinutes(currentTime.getMinutes()+workmins);
+
+// Display the result
+        // Define options for 12-hour format with AM/PM
+        const options = {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true
+        };
+        var formattedTime = expectedEndTime.toLocaleTimeString('en-US', options);
+        document.getElementById('endtime').textContent = formattedTime;
+  }
+
+
+//Function to update timer display
+    function updateTimer() {
+        timerseconds++;
+
+     if (timerseconds === 60) {
+         timerseconds = 0;
+         timerminutes++;
+     }
+     if (timerminutes === 60) {
+         timerminutes = 0;
+         timerhours++;
+     }
+
+     const timerDisplay = document.getElementById('duration');
+     if (timerDisplay) {
+        timerDisplay.textContent = timerhours.toString().padStart(2, '0') + 'hrs ' + timerminutes.toString().padStart(2, '0') + 'mins ' + timerseconds.toString().padStart(2, '0') + 's';
+    } else {
+        console.error('Timer display element not found.');
+    }
+        // Check if the time is up
+        checkTimeUp();
+    }
+
+    function startTimer() {
+    // Reset timer values
+    timerseconds = 0;
+    timerminutes = 0;
+    timerhours = 0;
+
+    // Clear any existing interval to prevent multiple timers running simultaneously
+    if (timerInterval) {
+     clearInterval(timerInterval);
+     timerInterval = null;
+      }
+
+      // Store the start time
+    startTime = new Date();
+    const startTimeOptions = {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+    };
+    const formattedStartTime = startTime.toLocaleTimeString('en-US', startTimeOptions);
+    document.getElementById('starttime').textContent = formattedStartTime;
+
+    // Call addTime to set expected end time
+    addTime();
+
+     // Check if the time is up
+    checkTimeUp();
+
+     // Update the timer every second
+     timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    function stopTimer() {
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+        
+         // Capture the actual end time
+        const actualendtime = new Date();
+        const endtimeoptions = {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true
+
+        };
+        const formattedendtime = actualendtime.toLocaleTimeString('en-US', endtimeoptions);
+        document.getElementById('endtime').textContent = formattedendtime;
+
+        return formattedendtime;       
+        }
+
+    // Function to check if the time is up
+    function checkTimeUp() {
+    const currentTime = new Date();
+    if (currentTime > expectedEndTime) {
+        alert("Time's up! If you need more time, pls press the start button to track the activity again.");
+        
+        endbutton();
+    }
+    }
+      
+    // Function to handle the start button click    
+    function startbutton() {
+    updateTime();
+    startTimer();
+    }
+    // Function to handle the end button click and alert the user
+    function endbutton() {
+    const formattedendtime = stopTimer();
+    const timerDisplay = document.getElementById('duration').textContent;
+    
+    const startTimeOptions = {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+    };
+    const formattedStartTime = startTime.toLocaleTimeString('en-US', startTimeOptions);
+
+    alert("\nTime Tracked: " + timerDisplay + "\nStart Time: " + formattedStartTime + "\nEnd Time: " + formattedendtime + "\nOfficer Name: " + username + "\nProject: " + clickedProjectButton + "\nActivity: " + clickedActivityButton);
+
+    }
+
 // Function to get user's name
 var username = getname();
 
@@ -94,123 +253,8 @@ function createButtons() {
         buttonContainer.appendChild(activitybutton);
     });
 }
-
 // Call the function to create buttons initially
 createButtons();
 
 
 
-// Function to get current time
-function updateTime() {
-    const now = new Date();
-    let hours = now.getHours();
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    const hoursStr = hours.toString().padStart(2);
-    const timeString = `${hoursStr}:${minutes} ${ampm}`;
-    document.getElementById('currenttime').textContent = timeString;
-    return timeString;
-}
-
-
-//Update Expected End Time
-function addTime() {
-    const workhrs = parseInt(document.getElementById('inputhrs').value) || 0; // Get hours input value, default to 0 if not provided
-    const workmins = parseInt(document.getElementById('inputmins').value) || 0; // Get hours input value, default to 0 if not provided
-
-// Get current time
-    const currentTime = new Date();
-
-// Add hours and minutes to current time
-    currentTime.setHours(currentTime.getHours()+workhrs );
-    currentTime.setMinutes(currentTime.getMinutes()+workmins);
-
-// Display the result
-        // Define options for 12-hour format with AM/PM
-        var options = {
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true
-        };
-        var formattedTime = currentTime.toLocaleTimeString('en-US', options);
-        document.getElementById('endtime').textContent = formattedTime;
-  }
-
-
-//create a timer function
-    let timerInterval;
-    let timerseconds = 0;
-    let timerminutes = 0;
-    let timerhours=0;
-
-    function updateTimer() {
-        timerseconds++;
-
-     if (timerseconds === 60) {
-         timerseconds = 0;
-         timerminutes++;
-     }
-     if (timerminutes === 60) {
-         timerminutes = 0;
-         timerhours++;
-     }
-
-     const timerDisplay = document.getElementById('duration');
-     timerDisplay.textContent = timerhours.toString().padStart(2, '0') + 'hrs ' +timerminutes.toString().padStart(2, '0') + 'mins ' + timerseconds.toString().padStart(2, '0') + 's';
-     return timerDisplay;
-    }
-
-    function startTimer() {
-    // Reset timer values
-    timerseconds = 0;
-    timerminutes = 0;
-    timerhours = 0;
-
-    // Clear any existing interval to prevent multiple timers running simultaneously
-    if (timerInterval) {
-     clearInterval(timerInterval);
-     timerInterval = null;
-      }
-     // Update the timer every second
-     timerInterval = setInterval(updateTimer, 1000);
-    }
-
-    function stopTimer() {
-        if (timerInterval) {
-            clearInterval(timerInterval);
-            timerInterval = null;
-        }
-           
-        var actualendtime = new Date();
-
-        var endtimeoptions = {
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true
-
-        }
-        var formattedendtime = actualendtime.toLocaleTimeString('en-US', endtimeoptions);
-        document.getElementById('endtime').textContent = formattedendtime;
-        return formattedendtime;   
-     
-
-        }
-      
-
-    function startbutton() {
-    updateTime();
-    addTime();
-    startTimer();
-    }
-
-    function endbutton() {
-    let formattedendtime = stopTimer();
-    let timeString = updateTime();
-    let timerDisplay = updateTimer();
-  
-    
-    alert("\nTime Tracked: " + timerDisplay.textContent + "\nStart Time: " + timeString + "\nEnd Time: " + formattedendtime + "\nOfficer Name: " + username + "\nProject: " + clickedProjectButton + "\nActivity: " + clickedActivityButton);
-
-    }

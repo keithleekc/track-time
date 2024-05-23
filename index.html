@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Track Time @ Work</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">  
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJF2XSZ8LN"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-BJF2XSZ8LN');
+    </script>
 </head>
+
 <body>
     
     <center>
@@ -34,7 +44,7 @@
             </div>
             
             <div class="rowbox">Current Start Time
-            <div id="currenttime">--:--</div>
+            <div id="starttime">--:--</div>
             </div>
         </div>
 
