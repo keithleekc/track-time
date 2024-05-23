@@ -11,6 +11,15 @@
 
 // Function to get current time
 function updateTime() {
+
+    const workhrs = parseInt(document.getElementById('inputhrs').value) || 0; // Get hours input value, default to 0 if not provided
+    const workmins = parseInt(document.getElementById('inputmins').value) || 0; // Get hours input value, default to 0 if not provided
+
+    // Check if either hours or minutes is less than 1
+    if (workhrs < 1 && workmins < 1) {
+ return; // Exit the function early
+    }
+
     const now = new Date();
     let hours = now.getHours();
     const minutes = String(now.getMinutes()).padStart(2, '0');
@@ -32,8 +41,7 @@ function addTime() {
     expectedEndTime = new Date(startTime);
     expectedEndTime.setHours(expectedEndTime.getHours() + workhrs);
     expectedEndTime.setMinutes(expectedEndTime.getMinutes() + workmins);
-    console.log('Expected end time:', expectedEndTime); // Debugging log
-
+    
 // Display the result
         // Define options for 12-hour format with AM/PM
         const options = {
@@ -70,6 +78,16 @@ function addTime() {
     }
 
     function startTimer() {
+    
+    const workhrs = parseInt(document.getElementById('inputhrs').value) || 0; // Get hours input value, default to 0 if not provided
+    const workmins = parseInt(document.getElementById('inputmins').value) || 0; // Get hours input value, default to 0 if not provided
+    
+    // Check if either hours or minutes is less than 1
+    if (workhrs < 1 && workmins < 1) {
+    alert("Please input a valid duration of at least 1 hour or 1 minute.");
+    return; // Exit the function early
+    }
+    
     // Reset timer values
     timerseconds = 0;
     timerminutes = 0;
@@ -168,14 +186,17 @@ function getname() {
         username = prompt("Good Day! \nMay I have your Name pls?");
         if (username === null) {
             // Handle if user cancels the prompt
-            document.getElementById('error').textContent = "Error: No name entered";
+            document.getElementById('errormsg').textContent = "ERROR: No name entered!";
             break; // Exit the loop if the prompt is canceled
         } else if (username.trim() === "") {
             // Display error message if the entered name is empty
-            document.getElementById('error').textContent = "Error: No name entered";
+            document.getElementById('errormsg').textContent = "ERROR: No name entered!";
+        } else {
+            // Clear error message if username is provided
+            document.getElementById('errormsg').textContent = "";
         }
     }
-    return username;
+       return username;
 }
 
 

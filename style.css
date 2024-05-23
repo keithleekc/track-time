@@ -114,6 +114,24 @@ input[type="number"],
     margin-top: 50px;
 }
 
+#errormsg {
+  color: red;
+  font-family: Helvetica neue, sans-serif;
+  font-weight: 200;
+  line-height: 0.7;
+  
+}
+
+.button-container {
+  max-width: 550px; /* Adjust the maximum width as needed */
+  margin: 0 auto; /* Center the button container horizontally */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the buttons horizontally */
+  align-items: center; /* Center the buttons vertically */
+}
+
+
 .projectbutton {
   width: 150px;
   background-color: rgb(124, 124, 250);
