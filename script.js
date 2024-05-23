@@ -186,7 +186,7 @@ function getname() {
 
 // Creating Project buttons
 // Sample array of button labels
-const PbuttonLabels = ["Project X", "Project NDI", "Project CAM"];
+const PbuttonLabels = ["Project X", "Project NDI", "Project CAM", "Project Z"];
 
 // Variable to store the clicked button's label
 let clickedProjectButton = null;
@@ -224,7 +224,7 @@ createPButtons();
 
 // Creating Activity buttons
 // Sample array of button labels
-const buttonLabels = ["Planning", "Development", "Engagement", "Enhancement", "Service Journey"];
+const buttonLabels = ["Planning", "Development", "Engagement", "Enhancement", "Service Journey", "UAT"];
 
 // Variable to store the clicked button's label
 let clickedActivityButton = null;
