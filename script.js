@@ -7,6 +7,8 @@
     let startTime;
     let expectedEndTime;
 
+
+
 // Function to get current time
 function updateTime() {
     const now = new Date();
@@ -130,8 +132,8 @@ function addTime() {
     function checkTimeUp() {
     const currentTime = new Date();
     if (currentTime > expectedEndTime) {
-        alert("Time's up! If you need more time, pls press the start button to track the activity again.");
-        
+        //alert("Time's up! If you need more time, pls press the start button to track the activity again.");
+        openPopup('popup.html', 'Time's Up!', 400, 300);
         endbutton();
     }
     }
@@ -256,5 +258,18 @@ function createButtons() {
 // Call the function to create buttons initially
 createButtons();
 
+
+// Function to open a pop-up window
+function openPopup(url, title, width, height) {
+    // Calculate the position of the window to center it on the screen
+    const left = (window.innerWidth - width) / 2;
+    const top = (window.innerHeight - height) / 2;
+    // Define window features
+    const features = `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes,status=yes`;
+    // Open the pop-up window
+    const popupWindow = window.open(url, title, features);
+    // Focus on the pop-up window
+    popupWindow.focus();
+}
 
 
